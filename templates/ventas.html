@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Ventas - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>💰 Registro de Ventas</h2>
+    <a href="/ventas/new" class="btn btn-primary">➕ Nueva Venta</a>
+</div>
+
+{% if ventas %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Impuesto</th>
+            <th>Método Pago</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venta in ventas %}
+        <tr>
+            <td>#{{ venta['id_venta'] }}</td>
+            <td><strong>{{ venta['cliente_nombre'] or 'Mostrador' }}</strong></td>
+            <td>{{ venta['fecha_venta'] }}</td>
+            <td><strong>${{ "%.2f"|format(venta['total_venta']) }}</strong></td>
+            <td>${{ "%.2f"|format(venta['impuesto']) }}</td>
+            <td>
+                <span class="badge badge-info">{{ venta['metodo_pago'] }}</span>
+            </td>
+            <td>
+                <span class="badge {% if venta['estado_venta'] == 'Completada' %}badge-success{% elif venta['estado_venta'] == 'Pendiente' %}badge-warning{% else %}badge-danger{% endif %}">
+                    {{ venta['estado_venta'] }}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="/ventas/delete/{{ venta['id_venta'] }}" class="btn btn-danger" onclick="return confirm('¿Eliminar esta venta?')">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 15px; color: #95a5a6;">
+    Total de ventas: <strong>{{ ventas|length }}</strong>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <p>No hay ventas registradas. <a href="/ventas/new">Registrar la primera venta</a></p>
+</div>
+{% endif %}
+{% endblock %}

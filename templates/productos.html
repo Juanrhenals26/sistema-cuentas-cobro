@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Productos - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>📦 Gestión de Productos</h2>
+    <a href="/productos/new" class="btn btn-primary">➕ Nuevo Producto</a>
+</div>
+
+{% if productos %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock Actual</th>
+            <th>Mín/Máx</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>#{{ producto['id_producto'] }}</td>
+            <td>
+                <strong>{{ producto['nombre'] }}</strong>
+                {% if producto['cantidad_stock'] < producto['cantidad_minima'] %}
+                    <br><span class="badge badge-warning">⚠️ Bajo Stock</span>
+                {% endif %}
+            </td>
+            <td>{{ producto['categoria_nombre'] or 'N/A' }}</td>
+            <td>${{ "%.2f"|format(producto['precio_unitario']) }}</td>
+            <td>
+                <strong style="{% if producto['cantidad_stock'] < producto['cantidad_minima'] %}color: #e74c3c;{% elif producto['cantidad_stock'] > producto['cantidad_maxima'] %}color: #f39c12;{% else %}color: #27ae60;{% endif %}">
+                    {{ producto['cantidad_stock'] }}
+                </strong>
+            </td>
+            <td>{{ producto['cantidad_minima'] }}/{{ producto['cantidad_maxima'] }}</td>
+            <td>
+                <span class="badge {% if producto['estado'] == 'Activo' %}badge-success{% elif producto['estado'] == 'Inactivo' %}badge-warning{% else %}badge-danger{% endif %}">
+                    {{ producto['estado'] }}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="/productos/edit/{{ producto['id_producto'] }}" class="btn btn-warning">✏️ Editar</a>
+                    <a href="/productos/delete/{{ producto['id_producto'] }}" class="btn btn-danger" onclick="return confirm('¿Eliminar este producto?')">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">
+    <p>No hay productos registrados. <a href="/productos/new">Crear el primer producto</a></p>
+</div>
+{% endif %}
+{% endblock %}

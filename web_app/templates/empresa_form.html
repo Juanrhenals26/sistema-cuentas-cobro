@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }}{% endblock %}
+{% block page_title %}{{ titulo }}{% endblock %}
+{% block page_sub %}{% if empresa %}Editar los datos de la empresa{% else %}Registrar una nueva empresa en el sistema{% endif %}{% endblock %}
+
+{% block topbar_actions %}
+  <a href="{{ url_for('index') }}" class="btn btn-outline">← Volver</a>
+{% endblock %}
+
+{% block content %}
+<div style="max-width: 680px;">
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">
+        {% if empresa %}✏️ Editar Empresa{% else %}➕ Nueva Empresa{% endif %}
+      </span>
+    </div>
+    <div class="card-body">
+      <form method="post">
+
+        <div class="form-grid">
+
+          <!-- Nombre empresa -->
+          <div class="form-group full">
+            <label for="nombre_empresa">Nombre de la empresa <span class="required">*</span></label>
+            <input type="text" id="nombre_empresa" name="nombre_empresa" required
+                   value="{{ empresa.nombre_empresa if empresa else '' }}"
+                   placeholder="Ej: JRTECHNOLOGY S.A.S.">
+          </div>
+
+          <!-- Correo destino -->
+          <div class="form-group full">
+            <label for="correo_destino">Correo electrónico de contacto <span class="required">*</span></label>
+            <input type="email" id="correo_destino" name="correo_destino" required
+                   value="{{ empresa.correo_destino if empresa else '' }}"
+                   placeholder="pagos@empresa.com">
+            <span class="form-hint">A esta dirección se enviarán las cuentas de cobro cada mes.</span>
+          </div>
+
+          <!-- Valor -->
+          <div class="form-group">
+            <label for="valor">Valor mensual (COP) <span class="required">*</span></label>
+            <input type="number" id="valor" name="valor" required min="1" step="1"
+                   value="{{ empresa.valor | int if empresa else '' }}"
+                   placeholder="250000">
+            <span class="form-hint">Valor en pesos colombianos sin puntos ni comas.</span>
+          </div>
+
+          <!-- Día de envío -->
+          <div class="form-group">
+            <label for="dia_envio">Día del mes para enviar <span class="required">*</span></label>
+            <select id="dia_envio" name="dia_envio" required>
+              {% for d in range(1, 32) %}
+                <option value="{{ d }}"
+                  {% if empresa and empresa.dia_envio == d %}selected{% endif %}>
+                  Día {{ d }}
+                </option>
+              {% endfor %}
+            </select>
+            <span class="form-hint">El sistema enviará automáticamente en este día cada mes.</span>
+          </div>
+
+          <!-- Concepto -->
+          <div class="form-group full">
+            <label for="concepto">Concepto del cobro <span class="required">*</span></label>
+            <textarea id="concepto" name="concepto" required
+                      placeholder="Ej: Arrendamiento software PRESTASOF y GAMMA">{{ empresa.concepto if empresa else '' }}</textarea>
+          </div>
+
+          <!-- Estado activa -->
+          <div class="form-group full">
+            <label>Estado</label>
+            <div class="toggle-wrap">
+              <label class="toggle">
+                <input type="checkbox" name="activa" value="1"
+                       {% if not empresa or empresa.activa %}checked{% endif %}>
+                <span class="slider"></span>
+              </label>
+              <span class="toggle-label">Empresa activa (recibe cuentas automáticas)</span>
+            </div>
+          </div>
+
+        </div><!-- /form-grid -->
+
+        <!-- Preview del valor en letras -->
+        <div id="valor-preview" style="margin:18px 0 22px;padding:14px 16px;background:var(--blue-light);border-radius:var(--radius-sm);font-size:13px;display:none;">
+          <strong>Valor en letras:</strong> <span id="letras-txt"></span>
+        </div>
+
+        <div style="display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border);padding-top:20px;">
+          <a href="{{ url_for('index') }}" class="btn btn-outline">Cancelar</a>
+          <button type="submit" class="btn btn-primary">
+            {% if empresa %}💾 Guardar Cambios{% else %}➕ Agregar Empresa{% endif %}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+/* Preview del valor en letras (cliente simple) */
+const inputValor = document.getElementById('valor');
+const preview = document.getElementById('valor-preview');
+const letrasTxt = document.getElementById('letras-txt');
+
+function numALetras(n) {
+  if (!n || n <= 0) return '';
+  const millones = Math.floor(n / 1_000_000);
+  const miles    = Math.floor((n % 1_000_000) / 1_000);
+  const cientos  = n % 1_000;
+  let r = '';
+  if (millones === 1) r += 'Un millón ';
+  else if (millones > 1) r += millones + ' millones ';
+  if (miles > 0) r += miles + ' mil ';
+  if (cientos > 0) r += cientos;
+  return (r.trim() + ' pesos M/CTE').trim();
+}
+
+inputValor.addEventListener('input', () => {
+  const v = parseInt(inputValor.value);
+  if (v > 0) {
+    letrasTxt.textContent = numALetras(v);
+    preview.style.display = 'block';
+  } else {
+    preview.style.display = 'none';
+  }
+});
+
+// Trigger on load si hay valor
+if (inputValor.value) inputValor.dispatchEvent(new Event('input'));
+</script>
+{% endblock %}

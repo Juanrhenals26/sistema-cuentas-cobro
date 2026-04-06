@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block page_sub %}Gestión de cuentas de cobro mensuales{% endblock %}
+
+{% block topbar_actions %}
+<a href="{{ url_for('nueva_empresa') }}" class="btn btn-primary">
+  ➕ Nueva Empresa
+</a>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Stats ── -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon blue">🏢</div>
+    <div>
+      <div class="stat-value">{{ stats.total_empresas }}</div>
+      <div class="stat-label">Empresas activas</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">✅</div>
+    <div>
+      <div class="stat-value">{{ stats.envios_ok_mes }}</div>
+      <div class="stat-label">Envíos OK este mes</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon red">❌</div>
+    <div>
+      <div class="stat-value">{{ stats.envios_err_mes }}</div>
+      <div class="stat-label">Errores este mes</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon orange">📅</div>
+    <div>
+      <div class="stat-value">{{ hoy.day }}</div>
+      <div class="stat-label">Día actual del mes</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Layout dos columnas ── -->
+<div style="display:grid; grid-template-columns: 1fr 300px; gap:22px; align-items:start;">
+
+  <!-- Tabla de empresas -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">🏢 Empresas Registradas</span>
+      <span style="font-size:12px;color:var(--text-muted);">{{ empresas|length }} empresa{{ 's' if empresas|length != 1
+        }}</span>
+    </div>
+
+    {% if empresas %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Valor</th>
+            <th>Día envío</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in empresas %}
+          <tr id="row-{{ e.id }}">
+            <td>
+              <div class="empresa-name">{{ e.nombre_empresa }}</div>
+              <div class="empresa-correo">{{ e.correo_destino }}</div>
+              <div class="empresa-correo" style="margin-top:2px;color:#8fa0b0;">{{ e.concepto }}</div>
+            </td>
+            <td class="valor-cell">
+              ${{ "{:,.0f}".format(e.valor).replace(',', '.') }}
+            </td>
+            <td>
+              <span class="dia-badge">{{ e.dia_envio }}</span>
+            </td>
+            <td>
+              {% if e.activa %}
+              <span class="badge badge-success">● Activa</span>
+              {% else %}
+              <span class="badge badge-muted">● Inactiva</span>
+              {% endif %}
+            </td>
+            <td>
+              <div class="actions-cell">
+                <!-- Enviar ahora -->
+                <button class="btn-icon" title="Enviar cuenta ahora"
+                  onclick='enviarAhora({{ e.id }}, {{ e.nombre_empresa | tojson }})'>
+                  📤
+                </button>
+                <!-- Editar -->
+                <a href="{{ url_for('editar_empresa', id=e.id) }}" class="btn-icon" title="Editar empresa">✏️</a>
+                <!-- Eliminar -->
+                <button class="btn-icon danger" title="Eliminar empresa"
+                  onclick='confirmarEliminar({{ e.id }}, {{ e.nombre_empresa | tojson }})'>
+                  🗑️
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">📭</div>
+      <p>No hay empresas registradas.</p>
+      <a href="{{ url_for('nueva_empresa') }}" class="btn btn-primary" style="margin-top:16px;">
+        ➕ Agregar primera empresa
+      </a>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Panel lateral derecho -->
+  <div>
+    <!-- Próximos envíos -->
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-header">
+        <span class="card-title">📅 Próximos Envíos</span>
+      </div>
+      <div class="card-body" style="padding:16px;">
+        {% if stats.proximos %}
+        <ul class="proximos-list">
+          {% for p in stats.proximos %}
+          <li class="proximo-item">
+            <div class="proximo-dia">{{ p.dia_envio }}</div>
+            <div>
+              <div class="proximo-nombre">{{ p.nombre_empresa }}</div>
+              <div class="proximo-valor">${{ "{:,.0f}".format(p.valor).replace(',', '.') }}</div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p style="font-size:13px;color:var(--text-muted);text-align:center;padding:12px 0;">Sin empresas activas</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Actividad reciente -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🕐 Actividad Reciente</span>
+        <a href="{{ url_for('logs') }}" style="font-size:12px;color:var(--blue);">Ver todo →</a>
+      </div>
+      <div class="card-body" style="padding:14px 16px;">
+        {% if logs_recientes %}
+        {% for log in logs_recientes %}
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+          {% if log.estado == 'OK' %}
+          <span style="font-size:16px;">✅</span>
+          {% else %}
+          <span style="font-size:16px;">❌</span>
+          {% endif %}
+          <div style="flex:1;min-width:0;">
+            <div
+              style="font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              {{ log.empresa_nombre }}
+            </div>
+            <div style="font-size:11px;color:var(--text-muted);">
+              {{ log.mes }} {{ log.anio }} · {{ log.fecha_envio[:10] }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p style="font-size:12px;color:var(--text-muted);text-align:center;padding:14px 0;">Sin actividad registrada</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Modal confirmación eliminar ── -->
+<div class="modal-overlay" id="modal-eliminar">
+  <div class="modal">
+    <h3>🗑️ Confirmar eliminación</h3>
+    <p id="modal-texto">¿Estás seguro de que deseas eliminar esta empresa?</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="cerrarModal()">Cancelar</button>
+      <form id="form-eliminar" method="post">
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  /* ── Enviar cuenta ahora ── */
+  async function enviarAhora(id, nombre) {
+    showToast(`⏳ Generando y enviando cuenta para ${nombre}...`, 'spin');
+    try {
+      const r = await fetch(`/empresa/${id}/enviar`, { method: 'POST' });
+      const data = await r.json();
+      if (data.ok) {
+        showToast(`✅ ${data.msg}`, 'ok');
+      } else {
+        showToast(`❌ ${data.msg}`, 'error');
+      }
+    } catch (e) {
+      showToast('❌ Error de conexión', 'error');
+    }
+  }
+
+  /* ── Modal eliminar ── */
+  function confirmarEliminar(id, nombre) {
+    document.getElementById('modal-texto').textContent =
+      `¿Eliminar la empresa "${nombre}"? Esta acción no se puede deshacer.`;
+    document.getElementById('form-eliminar').action = `/empresa/${id}/eliminar`;
+    document.getElementById('modal-eliminar').classList.add('show');
+  }
+  function cerrarModal() {
+    document.getElementById('modal-eliminar').classList.remove('show');
+  }
+  document.getElementById('modal-eliminar').addEventListener('click', function (e) {
+    if (e.target === this) cerrarModal();
+  });
+</script>
+{% endblock %}

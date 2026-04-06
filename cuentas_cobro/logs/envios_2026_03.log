@@ -1,0 +1,223 @@
+2026-03-24 18:32:08 | INFO     | ============================================================
+2026-03-24 18:32:08 | INFO     | Ejecución del 24/03/2026 18:32:08
+2026-03-24 18:32:08 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 18:32:08 | INFO     | ============================================================
+2026-03-24 18:32:08 | INFO     | [PROCESANDO] EMPRESA ABC S.A.S.
+2026-03-24 18:32:09 | ERROR    |   ERROR al generar PDF para EMPRESA ABC S.A.S.: [Errno 13] Permission denied: 'c:\\6TO SEMESTRE\\INTELIGENCIA ARTIFICIAL\\prueba\\cuentas_cobro\\pdfs\\CuentaCobro_EMPRESA_ABC_S.A.S._MARZO_2026.pdf'
+2026-03-24 18:32:09 | INFO     | [PROCESANDO] COMERCIALIZADORA XYZ LTDA.
+2026-03-24 18:32:09 | INFO     |   PDF generado: CuentaCobro_COMERCIALIZADORA_XYZ_LTDA._MARZO_2026.pdf
+2026-03-24 18:32:17 | ERROR    |   FALLO el envío a: gerencia@xyz.com
+2026-03-24 18:32:17 | INFO     | [PROCESANDO] INVERSIONES DELTA S.A.
+2026-03-24 18:32:17 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_DELTA_S.A._MARZO_2026.pdf
+2026-03-24 18:32:24 | ERROR    |   FALLO el envío a: admin@inversiones-delta.com
+2026-03-24 18:32:24 | INFO     | [PROCESANDO] SOLUCIONES OMEGA S.A.S.
+2026-03-24 18:32:24 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_OMEGA_S.A.S._MARZO_2026.pdf
+2026-03-24 18:32:32 | ERROR    |   FALLO el envío a: pagos@omega.com
+2026-03-24 18:32:32 | INFO     | [PROCESANDO] GRUPO EMPRESARIAL NORTE S.A.
+2026-03-24 18:32:32 | INFO     |   PDF generado: CuentaCobro_GRUPO_EMPRESARIAL_NORTE_S.A._MARZO_2026.pdf
+2026-03-24 18:32:39 | ERROR    |   FALLO el envío a: financiero@gruponorte.com
+2026-03-24 18:32:39 | INFO     | [PROCESANDO] DISTRIBUIDORA SUR LTDA.
+2026-03-24 18:32:39 | INFO     |   PDF generado: CuentaCobro_DISTRIBUIDORA_SUR_LTDA._MARZO_2026.pdf
+2026-03-24 18:32:47 | ERROR    |   FALLO el envío a: cuentas@distsur.com
+2026-03-24 18:32:47 | INFO     | [PROCESANDO] TECNOLOGÍAS INTEGRAL S.A.S.
+2026-03-24 18:32:47 | INFO     |   PDF generado: CuentaCobro_TECNOLOGÍAS_INTEGRAL_S.A.S._MARZO_2026.pdf
+2026-03-24 18:32:55 | ERROR    |   FALLO el envío a: tesoreria@tecnoint.com
+2026-03-24 18:32:55 | INFO     | ------------------------------------------------------------
+2026-03-24 18:32:55 | INFO     | Total procesadas exitosamente: 0
+2026-03-24 18:32:55 | INFO     | ============================================================
+2026-03-24 18:41:40 | INFO     | ============================================================
+2026-03-24 18:41:40 | INFO     | Ejecución del 24/03/2026 18:41:40
+2026-03-24 18:41:40 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 18:41:40 | INFO     | ============================================================
+2026-03-24 18:41:40 | INFO     | [PROCESANDO] EMPRESA ABC S.A.S.
+2026-03-24 18:41:40 | INFO     |   PDF generado: CuentaCobro_EMPRESA_ABC_S.A.S._MARZO_2026.pdf
+2026-03-24 18:41:52 | ERROR    |   FALLO el envío a: contacto@empresaabc.com
+2026-03-24 18:41:52 | INFO     | [PROCESANDO] COMERCIALIZADORA XYZ LTDA.
+2026-03-24 18:41:52 | INFO     |   PDF generado: CuentaCobro_COMERCIALIZADORA_XYZ_LTDA._MARZO_2026.pdf
+2026-03-24 18:42:00 | ERROR    |   FALLO el envío a: gerencia@xyz.com
+2026-03-24 18:42:00 | INFO     | [PROCESANDO] INVERSIONES DELTA S.A.
+2026-03-24 18:42:00 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_DELTA_S.A._MARZO_2026.pdf
+2026-03-24 18:42:09 | ERROR    |   FALLO el envío a: admin@inversiones-delta.com
+2026-03-24 18:42:09 | INFO     | [PROCESANDO] SOLUCIONES OMEGA S.A.S.
+2026-03-24 18:42:09 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_OMEGA_S.A.S._MARZO_2026.pdf
+2026-03-24 18:42:19 | ERROR    |   FALLO el envío a: pagos@omega.com
+2026-03-24 18:42:19 | INFO     | [PROCESANDO] GRUPO EMPRESARIAL NORTE S.A.
+2026-03-24 18:42:19 | INFO     |   PDF generado: CuentaCobro_GRUPO_EMPRESARIAL_NORTE_S.A._MARZO_2026.pdf
+2026-03-24 18:42:31 | ERROR    |   FALLO el envío a: financiero@gruponorte.com
+2026-03-24 18:42:31 | INFO     | [PROCESANDO] DISTRIBUIDORA SUR LTDA.
+2026-03-24 18:42:31 | INFO     |   PDF generado: CuentaCobro_DISTRIBUIDORA_SUR_LTDA._MARZO_2026.pdf
+2026-03-24 18:42:38 | ERROR    |   FALLO el envío a: cuentas@distsur.com
+2026-03-24 18:42:38 | INFO     | [PROCESANDO] TECNOLOGÍAS INTEGRAL S.A.S.
+2026-03-24 18:42:38 | INFO     |   PDF generado: CuentaCobro_TECNOLOGÍAS_INTEGRAL_S.A.S._MARZO_2026.pdf
+2026-03-24 18:42:47 | ERROR    |   FALLO el envío a: tesoreria@tecnoint.com
+2026-03-24 18:42:47 | INFO     | ------------------------------------------------------------
+2026-03-24 18:42:47 | INFO     | Total procesadas exitosamente: 0
+2026-03-24 18:42:47 | INFO     | ============================================================
+2026-03-24 18:58:49 | INFO     | ============================================================
+2026-03-24 18:58:49 | INFO     | Ejecución del 24/03/2026 18:58:49
+2026-03-24 18:58:49 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 18:58:49 | INFO     | ============================================================
+2026-03-24 18:58:49 | INFO     | [PROCESANDO] EMPRESA ABC S.A.S.
+2026-03-24 18:58:49 | INFO     |   PDF generado: CuentaCobro_EMPRESA_ABC_SAS_MARZO_2026.pdf
+2026-03-24 18:59:01 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-24 18:59:01 | INFO     | [PROCESANDO] COMERCIALIZADORA XYZ LTDA.
+2026-03-24 18:59:01 | INFO     |   PDF generado: CuentaCobro_COMERCIALIZADORA_XYZ_LTDA_MARZO_2026.pdf
+2026-03-24 18:59:18 | ERROR    |   FALLO el envío a: gerencia@xyz.com
+2026-03-24 18:59:18 | INFO     | [PROCESANDO] INVERSIONES DELTA S.A.
+2026-03-24 18:59:18 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_DELTA_SA_MARZO_2026.pdf
+2026-03-24 18:59:29 | ERROR    |   FALLO el envío a: admin@inversiones-delta.com
+2026-03-24 18:59:29 | INFO     | [PROCESANDO] SOLUCIONES OMEGA S.A.S.
+2026-03-24 18:59:29 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_OMEGA_SAS_MARZO_2026.pdf
+2026-03-24 18:59:37 | ERROR    |   FALLO el envío a: pagos@omega.com
+2026-03-24 18:59:37 | INFO     | [PROCESANDO] GRUPO EMPRESARIAL NORTE S.A.
+2026-03-24 18:59:37 | INFO     |   PDF generado: CuentaCobro_GRUPO_EMPRESARIAL_NORTE_SA_MARZO_2026.pdf
+2026-03-24 18:59:47 | ERROR    |   FALLO el envío a: financiero@gruponorte.com
+2026-03-24 18:59:47 | INFO     | [PROCESANDO] DISTRIBUIDORA SUR LTDA.
+2026-03-24 18:59:47 | INFO     |   PDF generado: CuentaCobro_DISTRIBUIDORA_SUR_LTDA_MARZO_2026.pdf
+2026-03-24 22:28:02 | INFO     | ============================================================
+2026-03-24 22:28:02 | INFO     | Ejecución del 24/03/2026 22:28:02
+2026-03-24 22:28:02 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 22:28:02 | INFO     | ============================================================
+2026-03-24 22:28:02 | INFO     | [PROCESANDO] EMPRESA ABC S.A.S.
+2026-03-24 22:28:02 | INFO     |   PDF generado: CuentaCobro_EMPRESA_ABC_SAS_MARZO_2026.pdf
+2026-03-24 22:28:10 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-24 22:28:10 | INFO     | [PROCESANDO] COMERCIALIZADORA XYZ LTDA.
+2026-03-24 22:28:10 | INFO     |   PDF generado: CuentaCobro_COMERCIALIZADORA_XYZ_LTDA_MARZO_2026.pdf
+2026-03-24 22:28:18 | ERROR    |   FALLO el envío a: gerencia@xyz.com
+2026-03-24 22:28:18 | INFO     | [PROCESANDO] INVERSIONES DELTA S.A.
+2026-03-24 22:28:18 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_DELTA_SA_MARZO_2026.pdf
+2026-03-24 22:28:25 | ERROR    |   FALLO el envío a: admin@inversiones-delta.com
+2026-03-24 22:28:25 | INFO     | [PROCESANDO] SOLUCIONES OMEGA S.A.S.
+2026-03-24 22:28:25 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_OMEGA_SAS_MARZO_2026.pdf
+2026-03-24 22:28:33 | ERROR    |   FALLO el envío a: pagos@omega.com
+2026-03-24 22:28:33 | INFO     | [PROCESANDO] GRUPO EMPRESARIAL NORTE S.A.
+2026-03-24 22:28:33 | INFO     |   PDF generado: CuentaCobro_GRUPO_EMPRESARIAL_NORTE_SA_MARZO_2026.pdf
+2026-03-24 22:28:40 | ERROR    |   FALLO el envío a: financiero@gruponorte.com
+2026-03-24 22:28:40 | INFO     | [PROCESANDO] DISTRIBUIDORA SUR LTDA.
+2026-03-24 22:28:40 | INFO     |   PDF generado: CuentaCobro_DISTRIBUIDORA_SUR_LTDA_MARZO_2026.pdf
+2026-03-24 22:28:48 | ERROR    |   FALLO el envío a: cuentas@distsur.com
+2026-03-24 22:28:48 | INFO     | [PROCESANDO] TECNOLOGÍAS INTEGRAL S.A.S.
+2026-03-24 22:28:48 | INFO     |   PDF generado: CuentaCobro_TECNOLOGÍAS_INTEGRAL_SAS_MARZO_2026.pdf
+2026-03-24 22:28:55 | ERROR    |   FALLO el envío a: tesoreria@tecnoint.com
+2026-03-24 22:28:55 | INFO     | ------------------------------------------------------------
+2026-03-24 22:28:55 | INFO     | Total procesadas exitosamente: 0
+2026-03-24 22:28:55 | INFO     | ============================================================
+2026-03-24 22:33:17 | INFO     | ============================================================
+2026-03-24 22:33:17 | INFO     | Ejecución del 24/03/2026 22:33:17
+2026-03-24 22:33:17 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 22:33:17 | INFO     | ============================================================
+2026-03-24 22:33:17 | INFO     | [PROCESANDO] JRTECHNOLOGY
+2026-03-24 22:33:17 | INFO     |   PDF generado: CuentaCobro_JRTECHNOLOGY_MARZO_2026.pdf
+2026-03-24 22:33:25 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-24 22:33:25 | INFO     | [PROCESANDO] COOMULTICOR
+2026-03-24 22:33:25 | INFO     |   PDF generado: CuentaCobro_COOMULTICOR_MARZO_2026.pdf
+2026-03-24 22:33:32 | ERROR    |   FALLO el envío a: COOMULTICOR@GMAIL.com
+2026-03-24 22:33:32 | INFO     | [PROCESANDO] COOPSINUANA
+2026-03-24 22:33:32 | INFO     |   PDF generado: CuentaCobro_COOPSINUANA_MARZO_2026.pdf
+2026-03-24 22:33:40 | ERROR    |   FALLO el envío a: COOPSINUAN@GMAIL.com
+2026-03-24 22:33:40 | INFO     | [PROCESANDO] FULL MOTOS DEL SAN JORGE
+2026-03-24 22:33:40 | INFO     |   PDF generado: CuentaCobro_FULL_MOTOS_DEL_SAN_JORGE_MARZO_2026.pdf
+2026-03-24 22:33:47 | ERROR    |   FALLO el envío a: FULLMOTOSSANJORGE@GMAIL.COM
+2026-03-24 22:33:47 | INFO     | [PROCESANDO] BANKING.
+2026-03-24 22:33:47 | INFO     |   PDF generado: CuentaCobro_BANKING_MARZO_2026.pdf
+2026-03-24 22:33:55 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-24 22:33:55 | INFO     | [PROCESANDO] SOLUCIONES FINANCIERA PANAMERICANA.
+2026-03-24 22:33:55 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_FINANCIERA_PANAMERICANA_MARZO_2026.pdf
+2026-03-24 22:34:02 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-24 22:34:02 | INFO     | ------------------------------------------------------------
+2026-03-24 22:34:02 | INFO     | Total procesadas exitosamente: 0
+2026-03-24 22:34:02 | INFO     | ============================================================
+2026-03-24 22:34:58 | INFO     | ============================================================
+2026-03-24 22:34:58 | INFO     | Ejecución del 24/03/2026 22:34:58
+2026-03-24 22:34:58 | INFO     | Día actual: 24 — Mes: MARZO
+2026-03-24 22:34:58 | INFO     | ============================================================
+2026-03-24 22:34:58 | INFO     | [PROCESANDO] JRTECHNOLOGY
+2026-03-24 22:34:58 | INFO     |   PDF generado: CuentaCobro_JRTECHNOLOGY_MARZO_2026.pdf
+2026-03-24 22:35:05 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-24 22:35:05 | INFO     | [PROCESANDO] COOMULTICOR
+2026-03-24 22:35:05 | INFO     |   PDF generado: CuentaCobro_COOMULTICOR_MARZO_2026.pdf
+2026-03-24 22:35:12 | ERROR    |   FALLO el envío a: COOMULTICOR@GMAIL.com
+2026-03-24 22:35:12 | INFO     | [PROCESANDO] COOPSINUANA
+2026-03-24 22:35:12 | INFO     |   PDF generado: CuentaCobro_COOPSINUANA_MARZO_2026.pdf
+2026-03-24 22:35:25 | ERROR    |   FALLO el envío a: COOPSINUAN@GMAIL.com
+2026-03-24 22:35:25 | INFO     | [PROCESANDO] FULL MOTOS DEL SAN JORGE
+2026-03-24 22:35:25 | INFO     |   PDF generado: CuentaCobro_FULL_MOTOS_DEL_SAN_JORGE_MARZO_2026.pdf
+2026-03-24 22:35:32 | ERROR    |   FALLO el envío a: FULLMOTOSSANJORGE@GMAIL.COM
+2026-03-24 22:35:32 | INFO     | [PROCESANDO] BANKING.
+2026-03-24 22:35:32 | INFO     |   PDF generado: CuentaCobro_BANKING_MARZO_2026.pdf
+2026-03-24 22:35:40 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-24 22:35:40 | INFO     | [PROCESANDO] SOLUCIONES FINANCIERA PANAMERICANA.
+2026-03-24 22:35:40 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_FINANCIERA_PANAMERICANA_MARZO_2026.pdf
+2026-03-24 22:36:02 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-24 22:36:02 | INFO     | ------------------------------------------------------------
+2026-03-24 22:36:02 | INFO     | Total procesadas exitosamente: 0
+2026-03-24 22:36:02 | INFO     | ============================================================
+2026-03-26 08:00:03 | INFO     | ============================================================
+2026-03-26 08:00:03 | INFO     | Ejecución del 26/03/2026 08:00:03
+2026-03-26 08:00:03 | INFO     | Día actual: 26 — Mes: MARZO
+2026-03-26 08:00:03 | INFO     | ============================================================
+2026-03-26 08:00:03 | INFO     | [OMITIDO] JRTECHNOLOGY — día de envío programado: 10
+2026-03-26 08:00:03 | INFO     | [OMITIDO] COOMULTICOR — día de envío programado: 29
+2026-03-26 08:00:03 | INFO     | [OMITIDO] COOPSINUANA — día de envío programado: 29
+2026-03-26 08:00:03 | INFO     | [OMITIDO] FULL MOTOS DEL SAN JORGE — día de envío programado: 20
+2026-03-26 08:00:03 | INFO     | [OMITIDO] BANKING. — día de envío programado: 10
+2026-03-26 08:00:03 | INFO     | [OMITIDO] SOLUCIONES FINANCIERA PANAMERICANA. — día de envío programado: 10
+2026-03-26 08:00:03 | INFO     | ------------------------------------------------------------
+2026-03-26 08:00:03 | INFO     | Ninguna empresa tiene envío programado para hoy.
+2026-03-26 08:00:03 | INFO     | ============================================================
+2026-03-30 17:53:38 | INFO     | ============================================================
+2026-03-30 17:53:38 | INFO     | Ejecución del 30/03/2026 17:53:38
+2026-03-30 17:53:38 | INFO     | Día actual: 30 — Mes: MARZO
+2026-03-30 17:53:38 | INFO     | ============================================================
+2026-03-30 17:53:38 | INFO     | [PROCESANDO] JRTECHNOLOGY
+2026-03-30 17:53:38 | INFO     |   PDF generado: CuentaCobro_JRTECHNOLOGY_MARZO_2026.pdf
+2026-03-30 17:53:46 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-30 17:53:46 | INFO     | [PROCESANDO] COOMULTICOR
+2026-03-30 17:53:46 | INFO     |   PDF generado: CuentaCobro_COOMULTICOR_MARZO_2026.pdf
+2026-03-30 17:53:52 | ERROR    |   FALLO el envío a: COOMULTICOR@GMAIL.com
+2026-03-30 17:53:52 | INFO     | [PROCESANDO] COOPSINUANA
+2026-03-30 17:53:52 | INFO     |   PDF generado: CuentaCobro_COOPSINUANA_MARZO_2026.pdf
+2026-03-30 17:53:59 | ERROR    |   FALLO el envío a: COOPSINUAN@GMAIL.com
+2026-03-30 17:53:59 | INFO     | [PROCESANDO] FULL MOTOS DEL SAN JORGE
+2026-03-30 17:54:00 | INFO     |   PDF generado: CuentaCobro_FULL_MOTOS_DEL_SAN_JORGE_MARZO_2026.pdf
+2026-03-30 17:54:14 | ERROR    |   FALLO el envío a: FULLMOTOSSANJORGE@GMAIL.COM
+2026-03-30 17:54:14 | INFO     | [PROCESANDO] BANKING.
+2026-03-30 17:54:14 | INFO     |   PDF generado: CuentaCobro_BANKING_MARZO_2026.pdf
+2026-03-30 17:54:22 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-30 17:54:22 | INFO     | [PROCESANDO] SOLUCIONES FINANCIERA PANAMERICANA.
+2026-03-30 17:54:22 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_FINANCIERA_PANAMERICANA_MARZO_2026.pdf
+2026-03-30 17:54:29 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-30 17:54:29 | INFO     | [PROCESANDO] INVERSIONES LOGISTICAS
+2026-03-30 17:54:29 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_LOGISTICAS_MARZO_2026.pdf
+2026-03-30 17:54:36 | ERROR    |   FALLO el envío a: inversioneslogisticassas@gmail.com
+2026-03-30 17:54:36 | INFO     | ------------------------------------------------------------
+2026-03-30 17:54:36 | INFO     | Total procesadas exitosamente: 0
+2026-03-30 17:54:36 | INFO     | ============================================================
+2026-03-30 19:30:58 | INFO     | ============================================================
+2026-03-30 19:30:58 | INFO     | Ejecución del 30/03/2026 19:30:58
+2026-03-30 19:30:58 | INFO     | Día actual: 30 — Mes: MARZO
+2026-03-30 19:30:58 | INFO     | ============================================================
+2026-03-30 19:30:58 | INFO     | [PROCESANDO] JRTECHNOLOGY
+2026-03-30 19:30:59 | INFO     |   PDF generado: CuentaCobro_JRTECHNOLOGY_MARZO_2026.pdf
+2026-03-30 19:31:07 | ERROR    |   FALLO el envío a: juandavirhenalsflorez186@gmail.com
+2026-03-30 19:31:07 | INFO     | [PROCESANDO] COOMULTICOR
+2026-03-30 19:31:07 | INFO     |   PDF generado: CuentaCobro_COOMULTICOR_MARZO_2026.pdf
+2026-03-30 19:31:14 | ERROR    |   FALLO el envío a: COOMULTICOR@GMAIL.com
+2026-03-30 19:31:14 | INFO     | [PROCESANDO] COOPSINUANA
+2026-03-30 19:31:14 | INFO     |   PDF generado: CuentaCobro_COOPSINUANA_MARZO_2026.pdf
+2026-03-30 19:31:14 | ERROR    |   FALLO el envío a: COOPSINUAN@GMAIL.com
+2026-03-30 19:31:14 | INFO     | [PROCESANDO] FULL MOTOS DEL SAN JORGE
+2026-03-30 19:31:14 | INFO     |   PDF generado: CuentaCobro_FULL_MOTOS_DEL_SAN_JORGE_MARZO_2026.pdf
+2026-03-30 19:31:22 | ERROR    |   FALLO el envío a: FULLMOTOSSANJORGE@GMAIL.COM
+2026-03-30 19:31:22 | INFO     | [PROCESANDO] BANKING.
+2026-03-30 19:31:22 | INFO     |   PDF generado: CuentaCobro_BANKING_MARZO_2026.pdf
+2026-03-30 19:31:29 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-30 19:31:29 | INFO     | [PROCESANDO] SOLUCIONES FINANCIERA PANAMERICANA.
+2026-03-30 19:31:29 | INFO     |   PDF generado: CuentaCobro_SOLUCIONES_FINANCIERA_PANAMERICANA_MARZO_2026.pdf
+2026-03-30 19:31:36 | ERROR    |   FALLO el envío a: FACTURACIONSVILLAC@GMAIL.com
+2026-03-30 19:31:36 | INFO     | [PROCESANDO] INVERSIONES LOGISTICAS
+2026-03-30 19:31:36 | INFO     |   PDF generado: CuentaCobro_INVERSIONES_LOGISTICAS_MARZO_2026.pdf
+2026-03-30 19:31:44 | ERROR    |   FALLO el envío a: inversioneslogisticassas@gmail.com
+2026-03-30 19:31:44 | INFO     | ------------------------------------------------------------
+2026-03-30 19:31:44 | INFO     | Total procesadas exitosamente: 0
+2026-03-30 19:31:44 | INFO     | ============================================================

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Historial de Envíos{% endblock %}
+{% block page_title %}Historial de Envíos{% endblock %}
+{% block page_sub %}Registro completo de todas las cuentas de cobro enviadas{% endblock %}
+
+{% block topbar_actions %}
+  <form action="{{ url_for('ejecutar_scheduler') }}" method="post">
+    <button type="submit" class="btn btn-blue"
+            onclick="return confirm('¿Ejecutar revisión del día de hoy ahora?')">
+      ⚡ Ejecutar Hoy
+    </button>
+  </form>
+{% endblock %}
+
+{% block content %}
+
+<!-- Resumen por estado -->
+{% set ok_count  = logs | selectattr('estado', 'equalto', 'OK')    | list | length %}
+{% set err_count = logs | selectattr('estado', 'equalto', 'ERROR') | list | length %}
+
+<div style="display:flex;gap:14px;margin-bottom:22px;flex-wrap:wrap;">
+  <div class="stat-card" style="flex:1;min-width:180px;padding:16px 20px;">
+    <div class="stat-icon blue">📋</div>
+    <div>
+      <div class="stat-value">{{ logs | length }}</div>
+      <div class="stat-label">Total registros</div>
+    </div>
+  </div>
+  <div class="stat-card" style="flex:1;min-width:180px;padding:16px 20px;">
+    <div class="stat-icon green">✅</div>
+    <div>
+      <div class="stat-value">{{ ok_count }}</div>
+      <div class="stat-label">Envíos exitosos</div>
+    </div>
+  </div>
+  <div class="stat-card" style="flex:1;min-width:180px;padding:16px 20px;">
+    <div class="stat-icon red">❌</div>
+    <div>
+      <div class="stat-value">{{ err_count }}</div>
+      <div class="stat-label">Envíos con error</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="card-title">📋 Registro de Envíos</span>
+    <span style="font-size:12px;color:var(--text-muted);">Últimos {{ logs | length }} registros</span>
+  </div>
+
+  {% if logs %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Empresa</th>
+          <th>Mes / Año</th>
+          <th>Fecha y hora</th>
+          <th>Estado</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td style="color:var(--text-muted);font-size:12px;">{{ log.id }}</td>
+          <td>
+            <div class="empresa-name">{{ log.empresa_nombre or '—' }}</div>
+          </td>
+          <td>
+            <span style="font-weight:600;font-size:13px;text-transform:capitalize;">
+              {{ log.mes }} {{ log.anio }}
+            </span>
+          </td>
+          <td style="font-size:12.5px;color:var(--text-muted);">
+            {{ log.fecha_envio }}
+          </td>
+          <td>
+            {% if log.estado == 'OK' %}
+              <span class="badge badge-success">✅ Enviado</span>
+            {% else %}
+              <span class="badge badge-danger">❌ Error</span>
+            {% endif %}
+          </td>
+          <td style="font-size:12px;color:var(--text-muted);max-width:220px;">
+            {% if log.error_msg %}
+              <span title="{{ log.error_msg }}"
+                    style="cursor:help;text-decoration:underline dotted;">
+                {{ log.error_msg[:60] }}{% if log.error_msg|length > 60 %}…{% endif %}
+              </span>
+            {% else %}
+              <span style="color:var(--accent);">Enviado correctamente</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">📭</div>
+    <p>Aún no hay envíos registrados.</p>
+    <p style="margin-top:8px;font-size:12px;">Los envíos aparecerán aquí automáticamente o cuando uses "Enviar ahora".</p>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Cuentas de Cobro{% endblock %} — Sistema</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">📄</div>
+    <div class="brand-name">Cuentas de Cobro</div>
+    <div class="brand-sub">Sistema Automatizado</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a href="{{ url_for('index') }}"
+       class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
+      <span class="icon">🏠</span> Dashboard
+    </a>
+    <a href="{{ url_for('nueva_empresa') }}"
+       class="nav-link {% if request.endpoint == 'nueva_empresa' %}active{% endif %}">
+      <span class="icon">➕</span> Nueva Empresa
+    </a>
+
+    <div class="nav-section">Reportes</div>
+    <a href="{{ url_for('logs') }}"
+       class="nav-link {% if request.endpoint == 'logs' %}active{% endif %}">
+      <span class="icon">📋</span> Historial de Envíos
+    </a>
+
+    <div class="nav-section">Sistema</div>
+    <a href="{{ url_for('config') }}"
+       class="nav-link {% if request.endpoint == 'config' %}active{% endif %}">
+      <span class="icon">⚙️</span> Configuración
+    </a>
+    <form action="{{ url_for('ejecutar_scheduler') }}" method="post" style="margin:0">
+      <button type="submit" class="nav-link"
+              style="width:100%;background:none;border:none;cursor:pointer;text-align:left;font-size:inherit;"
+              onclick="return confirm('¿Ejecutar revisión manual ahora?')">
+        <span class="icon">⚡</span> Ejecutar Ahora
+      </button>
+    </form>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="avatar">O</div>
+      <div>
+        <div class="user-name">Octavio Rhenals</div>
+        <div class="user-email">ocrhenals@hotmail.com</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<div class="main">
+  <header class="topbar">
+    <div>
+      <div class="topbar-title">{% block page_title %}Dashboard{% endblock %}</div>
+      <div class="topbar-sub">{% block page_sub %}{{ now.strftime('%A %d de %B de %Y') | capitalize }}{% endblock %}</div>
+    </div>
+    <div class="topbar-actions">
+      {% block topbar_actions %}{% endblock %}
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">
+              <span>{{ message }}</span>
+              <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast"></div>
+
+<script>
+/* ─── Toast helper ─────────────────────── */
+function showToast(msg, type='ok') {
+  const t = document.getElementById('toast');
+  const div = document.createElement('div');
+  div.className = `toast-item toast-${type}`;
+  div.innerHTML = (type==='ok' ? '✅' : type==='error' ? '❌' : '⏳') + ' ' + msg;
+  t.appendChild(div);
+  setTimeout(() => div.remove(), 4500);
+}
+
+/* ─── Auto-dismiss flashes ─────────────── */
+setTimeout(() => {
+  document.querySelectorAll('.flash').forEach(f => f.remove());
+}, 5000);
+</script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

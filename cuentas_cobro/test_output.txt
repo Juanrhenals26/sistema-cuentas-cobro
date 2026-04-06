@@ -1,0 +1,15 @@
+=== Test iniciando ===
+Python: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
+CWD: c:\6TO SEMESTRE\INTELIGENCIA ARTIFICIAL\prueba\cuentas_cobro
+Importando num_a_letras...
+  1500000 = UN MILLÓN QUINIENTOS MIL PESOS M/CTE
+Importando reportlab...
+  OK
+Importando generar_pdf...
+  OK
+Generando PDF...
+  [OK] PDF generado: pdfs\CuentaCobro_EMPRESA_ABC_S.A.S._MARZO_2026.pdf
+  PDF generado en: pdfs\CuentaCobro_EMPRESA_ABC_S.A.S._MARZO_2026.pdf
+  Archivo existe: True
+  Tamanio: 2719 bytes
+=== Test finalizado ===

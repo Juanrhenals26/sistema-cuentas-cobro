@@ -1,0 +1,51 @@
+[
+  {
+    "nombre_empresa": "JRTECHNOLOGY",
+    "correo_destino": "juandavirhenalsflorez186@gmail.com",
+    "valor": 1500000,
+    "dia_envio": 10,
+    "concepto": "Arrendamiento software PRESTASOF y GAMMA"
+  },
+  {
+    "nombre_empresa": "COOMULTICOR",
+    "correo_destino": "COOMULTICOR@GMAIL.com",
+    "valor": 500000,
+    "dia_envio": 29,
+    "concepto": "Arrendamiento software PRESTASOF y GAMMA"
+  },
+  {
+    "nombre_empresa": "COOPSINUANA",
+    "correo_destino": "COOPSINUAN@GMAIL.com",
+    "valor": 880000,
+    "dia_envio": 29,
+    "concepto": "Arrendamiento software PRESTASOF y GAMMA"
+  },
+  {
+    "nombre_empresa": "FULL MOTOS DEL SAN JORGE",
+    "correo_destino": "FULLMOTOSSANJORGE@GMAIL.COM",
+    "valor": 200000,
+    "dia_envio": 20,
+    "concepto": "Arrendamiento software PRESTASOF"
+  },
+  {
+    "nombre_empresa": "BANKING.",
+    "correo_destino": "FACTURACIONSVILLAC@GMAIL.com",
+    "valor": 250000,
+    "dia_envio": 10,
+    "concepto": "Arrendamiento software"
+  },
+  {
+    "nombre_empresa": "SOLUCIONES FINANCIERA PANAMERICANA.",
+    "correo_destino": "FACTURACIONSVILLAC@GMAIL.com",
+    "valor": 350000,
+    "dia_envio": 10,
+    "concepto": "Arrendamiento software"
+  },
+  {
+    "nombre_empresa": "INVERSIONES LOGISTICAS",
+    "correo_destino": "inversioneslogisticassas@gmail.com",
+    "valor": 760000,
+    "dia_envio": 30,
+    "concepto": "Arriendo de software housetrack y servicio de hosting"
+  }
+]

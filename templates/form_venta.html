@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block title %}Nueva Venta - Gestor de Tienda{% endblock %}
+
+{% block extra_css %}
+<style>
+    .items-list {
+        background-color: #ecf0f1;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .item-row {
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 100px;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .item-row input {
+        margin: 0;
+    }
+
+    .remove-btn {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .remove-btn:hover {
+        background-color: #c0392b;
+    }
+
+    .totales {
+        background-color: #34495e;
+        color: white;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .total-final {
+        font-size: 20px;
+        font-weight: bold;
+        border-top: 2px solid white;
+        padding-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>💰 Nueva Venta</h2>
+
+<div class="form-container">
+    <form method="POST">
+        <div class="form-group">
+            <label>Cliente *</label>
+            <select name="id_cliente" required>
+                <option value="">-- Selecciona un cliente --</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente['id_cliente'] }}">{{ cliente['nombre'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="form-group">
+                <label>Método de Pago *</label>
+                <select name="metodo_pago" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Cheque">Cheque</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Notas</label>
+                <input type="text" name="notas" placeholder="Notas de la venta (opcional)">
+            </div>
+        </div>
+
+        <h3 style="color: #2c3e50; margin-top: 30px; margin-bottom: 15px;">Productos a Vender</h3>
+
+        <div id="items-container"></div>
+
+        <button type="button" class="btn btn-primary" onclick="agregarItem()">➕ Agregar Producto</button>
+
+        <div class="totales">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span>$<span id="subtotal">0.00</span></span>
+            </div>
+            <div class="total-row">
+                <span>Impuesto (10%):</span>
+                <span>$<span id="impuesto">0.00</span></span>
+            </div>
+            <div class="total-row total-final">
+                <span>TOTAL:</span>
+                <span>$<span id="total">0.00</span></span>
+            </div>
+        </div>
+
+        <!-- Campo oculto para pasar items en JSON -->
+        <input type="hidden" name="items" id="items-json" value="[]">
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn btn-success">💾 Registrar Venta</button>
+            <a href="/ventas" class="btn" style="background-color: #95a5a6; color: white;">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    const productos = {{ productos|tojson }};
+    let items = [];
+
+    function agregarItem() {
+        items.push({id: Date.now(), id_producto: '', cantidad: 1, precio: 0});
+        renderItems();
+    }
+
+    function renderItems() {
+        const container = document.getElementById('items-container');
+        container.innerHTML = '';
+
+        items.forEach((item, idx) => {
+            const html = `
+                <div class="item-row">
+                    <select onchange="actualizarProducto(${item.id}, this.value)">
+                        <option value="">-- Selecciona un producto --</option>
+                        ${productos.map(p => `<option value="${p.id_producto}" data-precio="${p.precio_unitario}" ${item.id_producto == p.id_producto ? 'selected' : ''}>
+                            ${p.nombre} (Stock: ${p.cantidad_stock})
+                        </option>`).join('')}
+                    </select>
+                    <input type="number" value="${item.cantidad}" min="1" onchange="actualizarCantidad(${item.id}, this.value)">
+                    <input type="number" value="${item.precio}" step="0.01" readonly style="background-color: #ecf0f1;">
+                    <div style="background-color: #ecf0f1; padding: 8px; border-radius: 4px; text-align: right;">
+                        $${(item.cantidad * item.precio).toFixed(2)}
+                    </div>
+                    <button type="button" class="remove-btn" onclick="removeItem(${item.id})">✕</button>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        calcularTotales();
+    }
+
+    function actualizarProducto(itemId, productoId) {
+        const producto = productos.find(p => p.id_producto == productoId);
+        const item = items.find(i => i.id === itemId);
+        if (producto) {
+            item.id_producto = productoId;
+            item.precio = producto.precio_unitario;
+        }
+        renderItems();
+    }
+
+    function actualizarCantidad(itemId, cantidad) {
+        const item = items.find(i => i.id === itemId);
+        item.cantidad = parseInt(cantidad) || 0;
+        renderItems();
+    }
+
+    function removeItem(itemId) {
+        items = items.filter(i => i.id !== itemId);
+        renderItems();
+    }
+
+    function calcularTotales() {
+        const subtotal = items.reduce((sum, item) => sum + (item.cantidad * item.precio), 0);
+        const impuesto = subtotal * 0.1;
+        const total = subtotal + impuesto;
+
+        document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+        document.getElementById('impuesto').innerText = impuesto.toFixed(2);
+        document.getElementById('total').innerText = total.toFixed(2);
+
+        // Actualizar JSON
+        const itemsToSend = items.map(i => ({
+            id_producto: i.id_producto,
+            cantidad: i.cantidad,
+            precio: i.precio
+        }));
+        document.getElementById('items-json').value = JSON.stringify(itemsToSend);
+    }
+
+    // Agregar primer item
+    agregarItem();
+</script>
+{% endblock %}

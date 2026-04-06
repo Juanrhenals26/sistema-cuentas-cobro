@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>👥 Gestión de Clientes</h2>
+    <a href="/clientes/new" class="btn btn-primary">➕ Nuevo Cliente</a>
+</div>
+
+{% if clientes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre Completo</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Ciudad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>#{{ cliente['id_cliente'] }}</td>
+            <td><strong>{{ cliente['nombre'] }} {{ cliente['apellido'] }}</strong></td>
+            <td>{{ cliente['email'] or '-' }}</td>
+            <td>{{ cliente['telefono'] or '-' }}</td>
+            <td>
+                <span class="badge {% if cliente['tipo_cliente'] == 'VIP' %}badge-success{% elif cliente['tipo_cliente'] == 'Mayorista' %}badge-info{% else %}badge-warning{% endif %}">
+                    {{ cliente['tipo_cliente'] }}
+                </span>
+            </td>
+            <td>{{ cliente['ciudad'] or '-' }}</td>
+            <td>
+                <span class="badge {% if cliente['estado'] == 'Activo' %}badge-success{% else %}badge-danger{% endif %}">
+                    {{ cliente['estado'] }}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="/clientes/edit/{{ cliente['id_cliente'] }}" class="btn btn-warning">✏️ Editar</a>
+                    <a href="/clientes/delete/{{ cliente['id_cliente'] }}" class="btn btn-danger" onclick="return confirm('¿Eliminar este cliente?')">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 15px; color: #95a5a6;">
+    Total de clientes: <strong>{{ clientes|length }}</strong>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <p>No hay clientes registrados. <a href="/clientes/new">Crear el primer cliente</a></p>
+</div>
+{% endif %}
+{% endblock %}

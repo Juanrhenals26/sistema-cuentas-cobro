@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Proveedores - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>🤝 Gestión de Proveedores</h2>
+    <a href="/proveedores/new" class="btn btn-primary">➕ Nuevo Proveedor</a>
+</div>
+
+{% if proveedores %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Ciudad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>#{{ proveedor['id_proveedor'] }}</td>
+            <td><strong>{{ proveedor['nombre'] }}</strong></td>
+            <td>{{ proveedor['contacto'] or '-' }}</td>
+            <td>{{ proveedor['email'] or '-' }}</td>
+            <td>{{ proveedor['telefono'] or '-' }}</td>
+            <td>{{ proveedor['ciudad'] or '-' }}</td>
+            <td>
+                <span class="badge {% if proveedor['estado'] == 'Activo' %}badge-success{% else %}badge-danger{% endif %}">
+                    {{ proveedor['estado'] }}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="/proveedores/edit/{{ proveedor['id_proveedor'] }}" class="btn btn-warning">✏️ Editar</a>
+                    <a href="/proveedores/delete/{{ proveedor['id_proveedor'] }}" class="btn btn-danger" onclick="return confirm('¿Eliminar este proveedor?')">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 15px; color: #95a5a6;">
+    Total de proveedores: <strong>{{ proveedores|length }}</strong>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <p>No hay proveedores registrados. <a href="/proveedores/new">Crear el primer proveedor</a></p>
+</div>
+{% endif %}
+{% endblock %}

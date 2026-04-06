@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Configuración{% endblock %}
+{% block page_title %}Configuración{% endblock %}
+{% block page_sub %}Ajustes del sistema de envíos automáticos{% endblock %}
+
+{% block topbar_actions %}
+  <a href="{{ url_for('index') }}" class="btn btn-outline">← Volver</a>
+{% endblock %}
+
+{% block content %}
+<div style="max-width:620px;">
+
+  <form method="post">
+    <!-- ── Correo remitente ── -->
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-header">
+        <span class="card-title">📧 Cuenta de Correo</span>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="email_remitente">Correo remitente</label>
+            <input type="email" id="email_remitente" name="email_remitente"
+                   value="{{ cfg.get('email_remitente', '') }}"
+                   placeholder="ocrhenals@hotmail.com">
+            <span class="form-hint">La dirección desde la que se envían los correos.</span>
+          </div>
+          <div class="form-group full">
+            <label for="email_clave">Contraseña / App Password</label>
+            <input type="password" id="email_clave" name="email_clave"
+                   value="{{ cfg.get('email_clave', '') }}"
+                   placeholder="Tu contraseña o contraseña de aplicación">
+            <span class="form-hint">
+              Si tienes verificación en 2 pasos activa, usa una
+              <a href="https://account.microsoft.com/security" target="_blank"
+                 style="color:var(--blue);">contraseña de aplicación →</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SMTP ── -->
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-header">
+        <span class="card-title">🔧 Servidor SMTP</span>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="smtp_servidor">Servidor SMTP</label>
+            <select id="smtp_servidor" name="smtp_servidor">
+              <option value="smtp-mail.outlook.com"
+                {% if cfg.get('smtp_servidor','') == 'smtp-mail.outlook.com' %}selected{% endif %}>
+                Outlook / Hotmail
+              </option>
+              <option value="smtp.gmail.com"
+                {% if cfg.get('smtp_servidor','') == 'smtp.gmail.com' %}selected{% endif %}>
+                Gmail
+              </option>
+              <option value="smtp.yahoo.com"
+                {% if cfg.get('smtp_servidor','') == 'smtp.yahoo.com' %}selected{% endif %}>
+                Yahoo
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="smtp_puerto">Puerto</label>
+            <input type="number" id="smtp_puerto" name="smtp_puerto"
+                   value="{{ cfg.get('smtp_puerto', '587') }}"
+                   placeholder="587">
+            <span class="form-hint">Outlook usa 587. Gmail también.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Horario automático ── -->
+    <div class="card" style="margin-bottom:22px;">
+      <div class="card-header">
+        <span class="card-title">⏰ Horario de Envío Automático</span>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="hora_envio">Hora (0–23)</label>
+            <select id="hora_envio" name="hora_envio">
+              {% for h in range(0, 24) %}
+                <option value="{{ '%02d'|format(h) }}"
+                  {% if cfg.get('hora_envio', '08') == '%02d'|format(h) %}selected{% endif %}>
+                  {{ '%02d'|format(h) }}:00
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="minuto_envio">Minuto</label>
+            <select id="minuto_envio" name="minuto_envio">
+              {% for m in ['00', '15', '30', '45'] %}
+                <option value="{{ m }}"
+                  {% if cfg.get('minuto_envio', '00') == m %}selected{% endif %}>
+                  :{{ m }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:#fff8e1;border-radius:var(--radius-sm);border-left:4px solid var(--warning);font-size:12.5px;color:#7d5a00;">
+          ⚠️ El horario se aplica la próxima vez que reinicies la aplicación. Actualmente el scheduler revisa cada día a las
+          <strong>{{ cfg.get('hora_envio','08') }}:{{ cfg.get('minuto_envio','00') }}</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <a href="{{ url_for('index') }}" class="btn btn-outline">Cancelar</a>
+      <button type="submit" class="btn btn-primary">💾 Guardar Configuración</button>
+    </div>
+  </form>
+
+  <!-- Info sistema -->
+  <div class="card" style="margin-top:22px;">
+    <div class="card-header">
+      <span class="card-title">ℹ️ Información del Sistema</span>
+    </div>
+    <div class="card-body">
+      <table style="font-size:13px;">
+        <tbody>
+          <tr>
+            <td style="padding:7px 12px 7px 0;color:var(--text-muted);font-weight:600;white-space:nowrap;">Responsable</td>
+            <td style="padding:7px 0;">Octavio Cesar Rhenals Mercado</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px 7px 0;color:var(--text-muted);font-weight:600;">C.C.</td>
+            <td style="padding:7px 0;">78.028.895 de Cereté</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px 7px 0;color:var(--text-muted);font-weight:600;">Banco</td>
+            <td style="padding:7px 0;">Bancolombia · Cuenta de Ahorro 091-388984-55</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px 7px 0;color:var(--text-muted);font-weight:600;">Versión</td>
+            <td style="padding:7px 0;">1.0.0 · Python + Flask + SQLite</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

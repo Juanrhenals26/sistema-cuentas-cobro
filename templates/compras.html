@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Compras - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>🛒 Registro de Compras</h2>
+    <a href="/compras/new" class="btn btn-primary">➕ Nueva Compra</a>
+</div>
+
+{% if compras %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>Fecha Entrega</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for compra in compras %}
+        <tr>
+            <td>#{{ compra['id_compra'] }}</td>
+            <td><strong>{{ compra['proveedor_nombre'] or 'N/A' }}</strong></td>
+            <td>{{ compra['fecha_compra'] }}</td>
+            <td>{{ compra['fecha_entrega'] or '-' }}</td>
+            <td><strong>${{ "%.2f"|format(compra['total_compra']) }}</strong></td>
+            <td>
+                <span class="badge {% if compra['estado_compra'] == 'Recibida' %}badge-success{% elif compra['estado_compra'] == 'Pendiente' %}badge-warning{% elif compra['estado_compra'] == 'Parcial' %}badge-info{% else %}badge-danger{% endif %}">
+                    {{ compra['estado_compra'] }}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <a href="/compras/delete/{{ compra['id_compra'] }}" class="btn btn-danger" onclick="return confirm('¿Eliminar esta compra?')">🗑️ Eliminar</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div style="margin-top: 15px; color: #95a5a6;">
+    Total de compras: <strong>{{ compras|length }}</strong>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <p>No hay compras registradas. <a href="/compras/new">Registrar la primera compra</a></p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Gestor de Tienda{% endblock %}
+
+{% block content %}
+<h2>📊 Panel de Control</h2>
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>Productos Activos</h3>
+        <div class="number">{{ stats.get('total_productos', 0) }}</div>
+        <p style="color: #95a5a6; margin-top: 5px;">Productos disponibles</p>
+    </div>
+
+    <div class="stat-card" style="border-left-color: #27ae60;">
+        <h3>Clientes Registrados</h3>
+        <div class="number">{{ stats.get('total_clientes', 0) }}</div>
+        <p style="color: #95a5a6; margin-top: 5px;">Clientes activos</p>
+    </div>
+
+    <div class="stat-card" style="border-left-color: #e74c3c;">
+        <h3>Ventas Hoy</h3>
+        <div class="number">${{ "%.2f"|format(stats.get('ventas_hoy', 0)) }}</div>
+        <p style="color: #95a5a6; margin-top: 5px;">Monto total hoy</p>
+    </div>
+
+    <div class="stat-card" style="border-left-color: #f39c12;">
+        <h3>Bajo Stock</h3>
+        <div class="number">{{ stats.get('productos_bajo_stock', 0) }}</div>
+        <p style="color: #95a5a6; margin-top: 5px;">Productos por reabastecer</p>
+    </div>
+
+    <div class="stat-card" style="border-left-color: #9b59b6;">
+        <h3>Valor Inventario</h3>
+        <div class="number">${{ "%.2f"|format(stats.get('valor_inventario', 0)) }}</div>
+        <p style="color: #95a5a6; margin-top: 5px;">Valor total de stock</p>
+    </div>
+</div>
+
+<div style="background-color: white; padding: 30px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h3 style="color: #2c3e50; margin-bottom: 20px;">🚀 Accesos Rápidos</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+        <a href="/productos/new" class="btn btn-primary" style="text-align: center;">➕ Nuevo Producto</a>
+        <a href="/clientes/new" class="btn btn-success" style="text-align: center;">➕ Nuevo Cliente</a>
+        <a href="/proveedores/new" class="btn btn-warning" style="text-align: center;">➕ Nuevo Proveedor</a>
+        <a href="/ventas/new" class="btn" style="background-color: #16a085; text-align: center; color: white;">💰 Nueva Venta</a>
+        <a href="/compras/new" class="btn" style="background-color: #8e44ad; text-align: center; color: white;">🛒 Nueva Compra</a>
+        <a href="/productos" class="btn" style="background-color: #34495e; text-align: center; color: white;">📋 Ver Productos</a>
+    </div>
+</div>
+
+<div style="background-color: #ecf0f1; padding: 20px; border-radius: 4px; margin-top: 30px;">
+    <h3 style="color: #2c3e50; margin-bottom: 15px;">ℹ️ Información</h3>
+    <ul style="line-height: 1.8; color: #555;">
+        <li>✓ Gestiona tu inventario de productos</li>
+        <li>✓ Registra ventas y compras</li>
+        <li>✓ Controla el stock mínimo y máximo</li>
+        <li>✓ Mantén un registro de clientes y proveedores</li>
+        <li>✓ Visualiza estadísticas en tiempo real</li>
+    </ul>
+</div>
+{% endblock %}
